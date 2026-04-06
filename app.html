@@ -304,6 +304,7 @@
 
   /* buttons */
   .action-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .left-btns  { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
   .btn {
     font-family: var(--font-ui); font-size: 12px; font-weight: 500;
     padding: 6px 12px; border-radius: var(--radius);
@@ -5545,14 +5546,18 @@ function renderCards() {
         <button class="btn-review \${reviewLater.has(q.id)?'active ':' '}" onclick="toggleReview(${q.id})">${reviewLater.has(q.id)?'★':'☆'}</button>
       </div>
       <div class="q-body">
-        <div class="q-left">${leftHtml}</div>
+        <div class="q-left">
+          ${leftHtml}
+          <div class="left-btns">
+            <button class="btn btn-hint" onclick="toggleHint(${q.id})">${visHint[q.id]?'Hide hint':'Hint'}</button>
+            <button class="btn btn-sol" onclick="toggleSol(${q.id})">${visSol[q.id]?'Hide solution':'Solution'}</button>
+          </div>
+        </div>
         <div class="q-right">
           ${editorHtml}
           <div class="result-box" id="res-${q.id}"></div>
           <div class="action-row">
             <button class="btn btn-run" onclick="handleRun(${q.id})">${q.discuss ? 'Show solution' : q.predict ? 'Check' : 'Run'}</button>
-            <button class="btn btn-hint" onclick="toggleHint(${q.id})">${visHint[q.id]?'Hide hint':'Hint'}</button>
-            <button class="btn btn-sol" onclick="toggleSol(${q.id})">${visSol[q.id]?'Hide solution':'Solution'}</button>
             <button class="btn btn-reset" onclick="resetCode(${q.id})">Reset</button>
           </div>
         </div>
